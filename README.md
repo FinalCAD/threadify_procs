@@ -14,7 +14,7 @@ errors.
     ]
     call_with_threads procs, number_of_threads: 50
 
-An other option is available :with_writter (boolean). Its goal is to launch
+An other option is available :with_writer (boolean). Its goal is to launch
 another thread which responsibility is to create files on disc.
 
     require 'threadify_procs'
@@ -25,4 +25,4 @@ another thread which responsibility is to create files on disc.
           "#{Rails.root}/tmp/#{n}.txt", SecureRandom.uuid]
       end
     end
-    launch_in_threads procs, number_of_threads: 50, with_writter: true
+    launch_in_threads procs, number_of_threads: 50, with_writer: true
