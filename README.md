@@ -1,5 +1,7 @@
 # ThreadifyProcs
 
+[![Build Status](https://travis-ci.org/aq/threadify_procs.svg?branch=master)](https://travis-ci.org/aq/threadify_procs)
+
 Create an array of Procs, launch them within threads. It adresses the common
 problem of writting files concurrently in threads with a ruby proces or
 downloading simultaneously multiple files. It avoids 'Too many open files'
