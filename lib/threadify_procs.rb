@@ -4,7 +4,7 @@ module ThreadifyProcs
 
   def call_with_threads procs, options={}
     set_procs procs
-    return if procs.blank?
+    return if procs.empty?
     set_options options
     with_writer_thread do
       launch_procs
