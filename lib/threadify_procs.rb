@@ -4,6 +4,7 @@ module ThreadifyProcs
 
   def call_with_threads procs, options={}
     set_procs procs
+    return if procs.blank?
     set_options options
     with_writer_thread do
       launch_procs
@@ -50,10 +51,10 @@ module ThreadifyProcs
   end
 
   def set_procs procs
-    @procs = procs
     unless procs.kind_of?(Array) && procs.all?{|_proc|_proc.kind_of?(Proc)}
       raise 'ThreadifyProcs expects an array of procs.'
     end
+    @procs = procs
   end
 
   def set_options options
@@ -61,9 +62,8 @@ module ThreadifyProcs
     if @number_of_threads < 1
       raise 'ThreadifyProcs expects a positive number of Threads.'
     end
-    @procs_per_thread = (procs.size / @number_of_threads).ceil
+    @procs_per_thread = (@procs.size / @number_of_threads.to_f).ceil
     @with_writer = !!options[:with_writer]
-    @files_to_write = [] if @with_writer
   end
 
   def with_writer_thread
@@ -80,6 +80,8 @@ module ThreadifyProcs
       while !@procs.empty? do
         groups << @procs.shift(@procs_per_thread)
       end
+      puts "#{groups.size} Threads created, "\
+        "number of procs in each ~#{groups.map(&:size).sum.to_f / groups.size}."
     end
   end
 
