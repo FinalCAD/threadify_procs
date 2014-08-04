@@ -80,8 +80,6 @@ module ThreadifyProcs
       while !@procs.empty? do
         groups << @procs.shift(@procs_per_thread)
       end
-      puts "#{groups.size} Threads created, "\
-        "number of procs in each ~#{groups.map(&:size).sum.to_f / groups.size}."
     end
   end
 
