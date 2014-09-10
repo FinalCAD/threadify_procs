@@ -8,6 +8,7 @@ module ThreadifyProcs
     set_options options
     with_writer_thread do
       launch_procs
+      if @callback; @callback.call end
     end
   end
 
@@ -64,6 +65,7 @@ module ThreadifyProcs
     end
     @procs_per_thread = (@procs.size / @number_of_threads.to_f).ceil
     @with_writer = !!options[:with_writer]
+    @callback = options[:callback]
   end
 
   def with_writer_thread
