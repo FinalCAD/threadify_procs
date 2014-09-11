@@ -10,7 +10,7 @@ class ThreadifiedJob
     @total = 0
   end
 
-  def executed_function; end
+  def executed_function; sleep(1) end
   def procs
     [].tap do |_procs|
       3.times do |n|

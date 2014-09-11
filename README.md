@@ -1,6 +1,6 @@
 # ThreadifyProcs
 
-[![Build Status](https://travis-ci.org/aq/threadify_procs.svg?branch=master)](https://travis-ci.org/aq/threadify_procs)
+[![Build Status](https://travis-ci.org/FinalCAD/threadify_procs.svg?branch=master)](https://travis-ci.org/FinalCAD/threadify_procs)
 
 Create an array of Procs, launch them within threads. It adresses the common
 problem of writting files concurrently in threads with a ruby proces or
@@ -28,3 +28,7 @@ another thread which responsibility is to create files on disc.
       end
     end
     launch_in_threads procs, number_of_threads: 50, with_writer: true
+
+You can also use the callback option with a proc. It will be called after all the threads are finished.
+
+    launch_in_threads procs, number_of_threads: 50, callback: Proc.new { function_to_be_called }
